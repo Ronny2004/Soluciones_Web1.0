@@ -1,66 +1,110 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Mi Aplicación Laravel
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Bienvenido a **Mi Aplicación Laravel**. Este proyecto es una aplicación web construida con Laravel y Tailwind CSS. A continuación, se detallan los pasos para instalar y ejecutar el proyecto en una máquina diferente.
 
-## About Laravel
+## Requisitos
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- **PHP**: 8.2 o superior
+- **Composer**: Para manejar las dependencias de PHP
+- **MySQL**: O cualquier otro sistema de base de datos compatible
+- **Node.js**: Para manejar las dependencias de frontend y compilar assets
+- **Git**: Para clonar el repositorio
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Instalación
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Clonar el Repositorio
 
-## Learning Laravel
+Primero, clona el repositorio desde GitHub:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+```bash
+git clone https://github.com/Ronny2004/Soluciones_Web.git
+```
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### Configuración del Entorno
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+1. **Instalar Dependencias de PHP**: Usa Composer:
 
-## Laravel Sponsors
+    ```bash
+    composer install
+    ```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+2. **Configurar el Archivo `.env`**: Copia el archivo de ejemplo `.env.example` a un nuevo archivo `.env`:
 
-### Premium Partners
+    ```bash
+    cp .env.example .env
+    ```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+    Luego, edita el archivo `.env` para configurar tu conexión a la base de datos:
 
-## Contributing
+    ```plaintext
+    APP_NAME=Laravel
+    APP_ENV=local
+    APP_KEY=base64:DvzKweHMSBLDn3sW0dxwpitUZD5OSupNvJQ6U8vgOls=
+    APP_DEBUG=true
+    APP_URL=http://localhost
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+    LOG_CHANNEL=stack
 
-## Code of Conduct
+    DB_CONNECTION=mysql
+    DB_HOST=127.0.0.1
+    DB_PORT=3306
+    DB_DATABASE=solutions
+    DB_USERNAME=root
+    DB_PASSWORD=
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+    BROADCAST_DRIVER=log
+    CACHE_DRIVER=file
+    QUEUE_CONNECTION=sync
+    SESSION_DRIVER=file
+    SESSION_LIFETIME=120
 
-## Security Vulnerabilities
+    # Configuración de S3 (deja vacío si no usas S3)
+    S3_PUBLIC_URL=
+    S3_ENDPOINT=
+    S3_BUCKET=
+    S3_REGION=
+    S3_ACCESS_KEY=
+    S3_SECRET_KEY=
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+    # Modo de desarrollo
+    DEV_MODE=false
+    ```
 
-## License
+3. **Generar la Clave de Aplicación**: Genera una clave de aplicación para Laravel:
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+    ```bash
+    php artisan key:generate
+    ```
+
+4. **Migrar la Base de Datos**: Ejecuta las migraciones para crear las tablas necesarias en la base de datos:
+
+    ```bash
+    php artisan migrate
+    ```
+
+5. **Instalar Dependencias de Node.js**: Instala las dependencias de Node.js para el frontend y compila los assets:
+
+    ```bash
+    npm install
+    npm run dev
+    ```
+
+6. **Iniciar el Servidor de Desarrollo**: Para ejecutar el servidor de desarrollo de Laravel, usa el siguiente comando:
+
+    ```bash
+    php artisan serve
+    ```
+
+    Esto iniciará el servidor de desarrollo en [http://localhost:8000](http://localhost:8000).
+
+## Rutas
+
+- **Página de Inicio**: `/` - La página de bienvenida de la aplicación.
+- **Gestión de Usuarios**: `/users` - Administra los usuarios (lista, crear, editar, eliminar).
+
+### Funcionalidad de la Gestión de Usuarios
+
+- **Ver Usuarios**: Muestra una lista de todos los usuarios.
+- **Crear Usuario**: Permite agregar un nuevo usuario a la base de datos.
+- **Editar Usuario**: Permite modificar los detalles de un usuario existente.
+- **Eliminar Usuario**: Permite eliminar un usuario de la base de datos.
