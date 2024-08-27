@@ -26,6 +26,8 @@ git clone https://github.com/Ronny2004/Soluciones_Web.git
 
     ```bash
     composer install
+    composer require laravel/ui
+    php artisan ui react --auth
     ```
 
 2. **Configurar el Archivo `.env`**: Copia el archivo de ejemplo `.env.example` a un nuevo archivo `.env`:
