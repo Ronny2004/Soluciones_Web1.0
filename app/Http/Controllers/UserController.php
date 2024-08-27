@@ -3,69 +3,81 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Role;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
     public function index()
     {
-        $users = User::all();
+        $users = User::with('role')->get(); // Obtener usuarios con el rol relacionado
         return view('users.index', compact('users'));
     }
 
     public function create()
     {
-        return view('users.create');
+        $roles = Role::all(); // Obtener todos los roles para el dropdown
+        return view('users.create', compact('roles'));
     }
 
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required|email',
-            'password' => 'required',
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:8|confirmed',
+            'role_id' => 'required|exists:roles,id', // Validar que role_id sea válido
         ]);
 
-        User::create($request->all());
-        return redirect()->route('users.index');
-    }
+        if ($validator->fails()) {
+            return redirect()->route('users.create')
+                             ->withErrors($validator)
+                             ->withInput();
+        }
 
-    public function show(User $user)
-    {
-        return view('users.show', compact('user'));
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'role_id' => $request->role_id, // Asignar role_id
+        ]);
+
+        return redirect()->route('users.index')->with('success', 'User created successfully.');
     }
 
     public function edit(User $user)
     {
-        return view('users.edit', compact('user'));
+        $roles = Role::all(); // Obtener todos los roles para el dropdown
+        return view('users.edit', compact('user', 'roles'));
     }
 
     public function update(Request $request, User $user)
     {
-        // Valida los datos del formulario
-        $validated = $request->validate([
+        $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
-            'password' => 'nullable|confirmed|min:8',
+            'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
+            'password' => 'nullable|string|min:8|confirmed',
+            'role_id' => 'required|exists:roles,id', // Validar que role_id sea válido
         ]);
-    
-        // Actualiza el nombre y el email
-        $user->name = $validated['name'];
-        $user->email = $validated['email'];
-    
-        // Si se proporciona una nueva contraseña, actualízala
-        if ($request->filled('password')) {
-            $user->password = bcrypt($validated['password']);
+
+        if ($validator->fails()) {
+            return redirect()->route('users.edit', $user->id)
+                             ->withErrors($validator)
+                             ->withInput();
         }
-    
+
+        $user->name = $request->name;
+        $user->email = $request->email;
+
+        if ($request->filled('password')) {
+            $user->password = Hash::make($request->password);
+        }
+
+        $user->role_id = $request->role_id; // Asignar role_id
         $user->save();
-    
-        return redirect()->route('users.index')->with('success', 'User updated successfully');
-    }
-    
-    public function destroy(User $user)
-    {
-        $user->delete();
-        return redirect()->route('users.index');
+
+        return redirect()->route('users.index')->with('success', 'User updated successfully.');
     }
 }

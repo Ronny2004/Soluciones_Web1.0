@@ -3,31 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create User</title>
+    <title>Crear Usuario - Mi Aplicación Laravel</title>
     <link href="{{ asset('css/output.css') }}" rel="stylesheet">
 </head>
-<body class="bg-gray-100 flex items-center justify-center min-h-screen">
-    <div class="max-w-md w-full bg-white p-8 shadow-md rounded-lg">
-        <h1 class="text-2xl font-semibold mb-6">Create User</h1>
+<body class="bg-gray-100">
+    <div class="container mx-auto p-6">
+        <h1 class="text-3xl font-bold mb-4">Crear Usuario</h1>
         <form action="{{ route('users.store') }}" method="POST">
             @csrf
             <div class="mb-4">
-                <label for="name" class="block text-gray-700 font-medium mb-2">Name:</label>
-                <input type="text" id="name" name="name" class="form-input mt-1 block w-full" required>
+                <label for="name" class="block text-sm font-medium text-gray-700">Nombre</label>
+                <input type="text" id="name" name="name" value="{{ old('name') }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50" required>
+                @error('name')
+                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                @enderror
             </div>
             <div class="mb-4">
-                <label for="email" class="block text-gray-700 font-medium mb-2">Email:</label>
-                <input type="email" id="email" name="email" class="form-input mt-1 block w-full" required>
+                <label for="email" class="block text-sm font-medium text-gray-700">Correo Electrónico</label>
+                <input type="email" id="email" name="email" value="{{ old('email') }}" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50" required>
+                @error('email')
+                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                @enderror
             </div>
             <div class="mb-4">
-                <label for="password" class="block text-gray-700 font-medium mb-2">Password:</label>
-                <input type="password" id="password" name="password" class="form-input mt-1 block w-full" required>
+                <label for="password" class="block text-sm font-medium text-gray-700">Contraseña</label>
+                <input type="password" id="password" name="password" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50" required>
+                @error('password')
+                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                @enderror
             </div>
             <div class="mb-4">
-                <label for="password_confirmation" class="block text-gray-700 font-medium mb-2">Confirm Password:</label>
-                <input type="password" id="password_confirmation" name="password_confirmation" class="form-input mt-1 block w-full" required>
+                <label for="password_confirmation" class="block text-sm font-medium text-gray-700">Confirmar Contraseña</label>
+                <input type="password" id="password_confirmation" name="password_confirmation" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50" required>
+                @error('password_confirmation')
+                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                @enderror
             </div>
-            <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">Create</button>
+            <div class="mb-4">
+                <label for="role_id" class="block text-sm font-medium text-gray-700">Rol</label>
+                <select id="role_id" name="role_id" class="form-select mt-1 block w-full" required>
+                    <option value="">Seleccione un rol</option>
+                    @foreach ($roles as $role)
+                        <option value="{{ $role->id }}">{{ $role->name }}</option>
+                    @endforeach
+                </select>
+                @error('role_id')
+                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                @enderror
+            </div>
+            <div>
+                <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">Guardar Usuario</button>
+            </div>
         </form>
     </div>
 </body>

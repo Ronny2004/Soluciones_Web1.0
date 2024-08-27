@@ -14,6 +14,7 @@
                 <ul class="flex space-x-4">
                     <li><a href="{{ route('welcome') }}" class="hover:underline text-secondary">Inicio</a></li>
                     <li><a href="{{ route('users.index') }}" class="bg-secondary text-white py-2 px-4 rounded hover:bg-blue-800">Gestión de Usuarios</a></li>
+                    <li><a href="{{ route('roles.index') }}" class="bg-secondary text-white py-2 px-4 rounded hover:bg-blue-800">Gestión de Roles</a></li>
                 </ul>
             </nav>
         </div>
@@ -29,6 +30,12 @@
             <h3 class="text-2xl font-semibold text-textPrimary">Gestión de Usuarios</h3>
             <p class="mt-2 text-lg text-textSecondary">Administra tus usuarios, crea, edita o elimina usuarios fácilmente.</p>
             <a href="{{ route('users.index') }}" class="mt-4 inline-block bg-secondary text-white py-2 px-4 rounded hover:bg-blue-800">Ver usuarios</a>
+        </div>
+
+        <div class="text-center mt-8">
+            <h3 class="text-2xl font-semibold text-textPrimary">Gestión de Roles</h3>
+            <p class="mt-2 text-lg text-textSecondary">Administra los roles de los usuarios, crea, edita o elimina roles fácilmente.</p>
+            <a href="{{ route('roles.index') }}" class="mt-4 inline-block bg-secondary text-white py-2 px-4 rounded hover:bg-blue-800">Ver roles</a>
         </div>
     </main>
 </body>
