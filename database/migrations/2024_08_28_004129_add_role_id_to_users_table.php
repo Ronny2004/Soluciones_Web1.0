@@ -9,7 +9,9 @@ class AddRoleIdToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
+            if (!Schema::hasColumn('users', 'role_id')) {
             $table->foreignId('role_id')->constrained('roles')->onDelete('cascade');
+            }
         });
     }
 
