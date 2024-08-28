@@ -22,7 +22,7 @@
             <div class="flex items-center justify-between">
                 <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">Iniciar Sesión</button>
                 @if (Route::has('password.request'))
-                <a href="{{ route('password.request') }}" class="text-blue-500 hover:underline">Olvidaste tu contraseña?</a>
+                <a href="{{ route('password.request') }}" class="text-blue-500 hover:underline">¿Olvidaste tu contraseña?</a>
                 @endif
             </div>
         </form>
