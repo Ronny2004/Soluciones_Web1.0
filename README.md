@@ -17,7 +17,7 @@ Bienvenido a **Mi Aplicación Laravel**. Este proyecto es una aplicación web co
 Primero, clona el repositorio desde GitHub:
 
 ```bash
-git clone https://github.com/Ronny2004/Soluciones_Web.git
+git clone https://github.com/Ronny2004/Soluciones_Web1.0.git
 ```
 
 ### Configuración del Entorno
@@ -57,6 +57,16 @@ git clone https://github.com/Ronny2004/Soluciones_Web.git
     QUEUE_CONNECTION=sync
     SESSION_DRIVER=file
     SESSION_LIFETIME=120
+
+    # Configuración de correo
+    MAIL_MAILER=smtp
+    MAIL_HOST=smtp.gmail.com
+    MAIL_PORT=587
+    MAIL_USERNAME=estevenpallo8@gmail.com
+    MAIL_PASSWORD="htik exsa sxub vjvc"
+    MAIL_ENCRYPTION=tls
+    MAIL_FROM_ADDRESS=estevenpallo8@gmail.com
+    MAIL_FROM_NAME="${APP_NAME}"
 
     # Configuración de S3 (deja vacío si no usas S3)
     S3_PUBLIC_URL=
