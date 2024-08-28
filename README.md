@@ -83,15 +83,21 @@ git clone https://github.com/Ronny2004/Soluciones_Web.git
     ```bash
     php artisan migrate
     ```
+5. **Ejecutar Seeders (opcional):**: Para poblar la base de datos con datos de ejemplo:
 
-5. **Instalar Dependencias de Node.js**: Instala las dependencias de Node.js para el frontend y compila los assets:
+    ```bash
+    php artisan db:seed --class=RolesSeeder
+    php artisan db:seed --class=UsersSeeder
+    ```
+
+6. **Instalar Dependencias de Node.js**: Instala las dependencias de Node.js para el frontend y compila los assets:
 
     ```bash
     npm install
     npm run dev
     ```
 
-6. **Iniciar el Servidor de Desarrollo**: Para ejecutar el servidor de desarrollo de Laravel, usa el siguiente comando:
+7. **Iniciar el Servidor de Desarrollo**: Para ejecutar el servidor de desarrollo de Laravel, usa el siguiente comando:
 
     ```bash
     php artisan serve
