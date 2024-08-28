@@ -35,5 +35,14 @@ class UsersSeeder extends Seeder
             'password' => Hash::make('password123'), // Cambia la contraseña por una segura
             'role_id' => 3, // Asignar el ID del rol Invitado
         ]);
+
+
+        // Crear usuarios con diferentes roles
+        User::create([
+            'name' => 'Alejandro',
+            'email' => 'portillaai@example.com',
+            'password' => Hash::make('Chiwanda2211'), // Cambia la contraseña por una segura
+            'role_id' => 1, // Asignar el ID del rol Administrador
+        ]);
     }
 }
