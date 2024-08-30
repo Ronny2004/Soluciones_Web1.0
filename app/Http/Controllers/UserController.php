@@ -10,11 +10,20 @@ use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::with('role')->get(); // Obtener usuarios con el rol relacionado
-        return view('users.index', compact('users'));
+        $search = $request->input('search');
+    
+        $users = User::query()
+            ->where('name', 'like', "%{$search}%")
+            ->orWhere('email', 'like', "%{$search}%")
+            ->get();
+    
+        $roles = Role::all();
+    
+        return view('users.index', compact('users', 'roles'));
     }
+    
 
     public function create()
     {
@@ -80,4 +89,18 @@ class UserController extends Controller
 
         return redirect()->route('users.index')->with('success', 'User updated successfully.');
     }
+    // Ubicación: App\Http\Controllers\UserController.php
+
+public function destroy($id)
+{
+    // Busca el usuario por su ID
+    $user = User::findOrFail($id);
+
+    // Elimina el usuario
+    $user->delete();
+
+    // Redirige a la lista de usuarios con un mensaje de éxito
+    return redirect()->route('users.index')->with('success', 'Usuario eliminado correctamente.');
+}
+
 }

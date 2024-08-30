@@ -42,9 +42,10 @@
             </div>
             <div class="mb-4">
                 <label for="role_id" class="block text-sm font-medium text-gray-700">Rol</label>
-                <select id="role_id" name="role_id" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50" required>
+                <select id="role_id" name="role_id" class="form-select mt-1 block w-full" required>
+                    <option value="">Seleccione un rol</option>
                     @foreach ($roles as $role)
-                    <option value="{{ $role->id }}">{{ $role->name }}</option>
+                        <option value="{{ $role->id }}">{{ $role->name }}</option>
                     @endforeach
                 </select>
                 @error('role_id')

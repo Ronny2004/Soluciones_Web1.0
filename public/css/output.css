@@ -25,6 +25,14 @@
   --tw-content: '';
 }
 
+
+.user-icon {
+  color: #333; /* Color oscuro para el icono del usuario */
+}
+.user-icon-border {
+  border: 2px solid #ccc; /* Contorno gris para el icono del usuario */
+}
+
 /*
 1. Use a consistent sensible line-height in all browsers.
 2. Prevent adjustments of font size after orientation changes in iOS.
@@ -34,6 +42,24 @@
 6. Use the user's configured `sans` font-variation-settings by default.
 7. Disable tap highlights on iOS
 */
+
+/* Estilos para el menú de acciones */
+.actions-menu {
+  display: none;
+}
+
+.relative:hover .actions-menu {
+  display: block;
+}
+
+/* Estilos para el modal */
+#userModal {
+  display: none;
+}
+
+#userModal.show {
+  display: flex;
+}
 
 html,
 :host {
